@@ -1,0 +1,58 @@
+distinct 去重：select distinct gender from students;
+
+模糊查询：
+    关键字：like
+        % 替换任意个
+        _ 替换一个
+范围查询
+    in：select * from students where age (not) in (1,2,22);
+    between...and...
+        select * from students where age (not) between 11 and 22;
+    空判断：
+        is null:
+        is not null:
+
+排序：
+    order by: asc升序 desc降序 不写默认asc
+    多级排序：年龄升序，如果年龄相同，按身高降序
+        select * from students where age between 18 and 34 order by age,high        desc;
+聚合函数：会与分组查询配合使用
+    count(总数): select count(*) from students where gender=1;
+    max：最大值
+    min: 最小值
+    sun：总和
+    avg：平均值（默认小数点后四位）
+    round:四舍五入
+        保留两位小数：select round(avg(age),2) from students;
+
+
+分组查询：
+    group by:
+    配合聚合函数使用：select gender,count(*) from students group by gender;
+    group_concat(要链接的字段)：
+        select gender,group_concat(name) from students group by gender;
+    
+    having:对分组后的结果集进行条件判断
+        select avg(age),gender,group_concat(name) from students group by gender having avg(age)>18;
+    with rollup: 汇总统计(了解)
+    
+分页查询：
+    limit: （放在最后）
+        公式：limit（（页数-1）×每一页的个数，显示个数）
+
+子查询：（一个查询的结果作为另一个查询的条件去查询）
+    标量子查询：一行一列
+    列子查询：一列多行
+    行子查询：一行多列
+
+链接查询：
+   inner join：内连接
+   left join: 左链接
+
+自关联查询：晚上练习！
+ select a.* from students as a inner join students as b where a.id = b.cls_id;
+
+
+
+
+
